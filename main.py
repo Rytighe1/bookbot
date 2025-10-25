@@ -2,6 +2,7 @@
 from stats import get_num_words
 from stats import lower_case
 from stats import char_counts
+from stats import sort_on
 
 
 #Function to read the file and return its contents as a string. 
@@ -29,11 +30,17 @@ def main():
     #Count characters and build out dictionary. 
     characters = char_counts(lower_text)
 
-    #Print number of words to console
+    #Sort the characters dictionary
+    sorted_dict = sorted(characters.items(),key=lambda kv: kv[1], reverse=True)
+    list_of_dicts = [{"char": k, "num":v} for k, v in characters.items()]
+    list_of_dicts.sort(key=sort_on, reverse = True)
+    print("============BOOKBOT============")
+    print(f"Analyzing book found at {filepath}...")
+    print("----------Word Count----------")
     print(f"Found {num_words} total words")
-
-    #Print character count dictionary
-    print(characters)
+    print("----------Character Count----------")
+    for item in list_of_dicts:
+        print(f"{item['char']}: {item['num']}")
 
 main()
 

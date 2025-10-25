@@ -25,3 +25,7 @@ def char_counts(lower_text):
 
     return counts
 
+#Function to set as the sorting key for .sort class in main. 
+
+def sort_on(items):
+    return items["num"]
