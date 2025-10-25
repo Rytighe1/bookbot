@@ -3,6 +3,7 @@ from stats import get_num_words
 from stats import lower_case
 from stats import char_counts
 from stats import sort_on
+import sys
 
 
 #Function to read the file and return its contents as a string. 
@@ -15,8 +16,12 @@ def get_book_text(file_path):
 #Main function to use get_book_text and print the book. 
 
 def main():
-    """Relative path to frankenstein.txt file"""
-    filepath = "books/frankenstein.txt"
+    #Ensure that users pass 2 CLI arguments to sys.argv
+    try:
+        filepath = sys.argv[1]
+    except IndexError:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
 
     #Get the text of the book
     book_text=get_book_text(filepath)
